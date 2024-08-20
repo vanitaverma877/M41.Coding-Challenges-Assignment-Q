@@ -1,0 +1,451 @@
+
+M41.Coding Challenges Assignment Q
+
+#Coding Challenges Assignment Questions ;
+
+1. Reverse String.
+The problem is to create a program that uses the setTimeout() function to 
+reverse a given string after a delay of 2 seconds. The program should use a 
+variable “input” storing a string as input and then implement a delay of 2 
+seconds before reversing the string. The reversed string should then be printed 
+as output.
+
+2. Random Number Generator with Delay and Progress Indication:
+The goal of this program is to generate a random number after a delay of 3 
+seconds, and store the delay in a variable so can be modified. The program 
+displays a message every second indicating the time remaining until the random 
+number is generated and then outputs the generated number.
+
+3. Build a feature for Store's Inventory.
+Suppose a store has a list of items and their prices in US Dollars stored as 
+an object. Create a JavaScript program to convert the prices to Indian Rupees 
+using an exchange rate of 1 USD to 80 INR. The program should use the map 
+higher-order function to create a new object with the converted prices in Rupees.
+
+4. Filtering and Capitalizing: Books Published After 2010 with Author Names.
+Write a program that takes a list of books, including their authors and 
+publication years as input. The program should then filter out all books that 
+were published before 2010 and create a new array with the remaining books, 
+but with their author names capitalized.
+
+5. URL validation.
+Write a program using a regex that matches valid URLs. Valid URLs should start 
+with either http:// or https://, followed by one or more letters, digits, or 
+special characters, followed by a dot, followed by one or more letters.
+Print a message indicating if the input matches the conditions or not.
+
+6. LinkedIn Profile URL Validator.
+As a developer, you want to create a program that validates LinkedIn profile 
+URLs to ensure that they are formatted correctly and contain only valid 
+characters. Valid LinkedIn profile URLs should start with https://
+www.linkedin.com/in/ followed by a combination of one or more letters, digits, 
+underscores, or hyphens, and end with a letter or digit. The length of the 
+profile ID should be between 5 and 30 characters. 
+
+The program should use a regular expression to match valid LinkedIn profile URLs, 
+and should not match URLs that do not follow this format or contain invalid 
+characters. The program should provide clear output messages indicating whether 
+each input is a valid LinkedIn profile URL or not.
+
+.......................................................................
+
+1. Reverse String.
+The problem is to create a program that uses the setTimeout() function to 
+reverse a given string after a delay of 2 seconds. The program should use a 
+variable “input” storing a string as input and then implement a delay of 2 
+seconds before reversing the string. The reversed string should then be printed 
+as output.
+
+A.To reverse a string using the `setTimeout()` function with a delay of 2 seconds, follow these steps:
+
+1. **Store the Input String:**
+   - Define a variable `input` that holds the string you want to reverse.
+
+2. **Use `setTimeout()`:**
+   - Implement a delay of 2 seconds (2000 milliseconds) using `setTimeout()`. 
+
+3. **Reverse the String:**
+   - Inside the `setTimeout()` callback function, reverse the string and print the result.
+
+Here's a sample JavaScript code demonstrating this:
+
+```javascript
+// Function to reverse a string
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+
+// Input string
+const input = 'Hello, World!';
+
+// Set timeout to reverse the string after 2 seconds
+setTimeout(() => {
+    const reversed = reverseString(input);
+    console.log('Reversed string:', reversed);
+}, 2000);
+```
+
+### Explanation:
+
+1. **Reverse String Function:**
+   - `reverseString(str)` function takes a string `str`, splits it into an array of characters, reverses the array, and then joins the characters back into a string.
+
+2. **Input Variable:**
+   - `const input = 'Hello, World!';` stores the string to be reversed.
+
+3. **Using `setTimeout()`:**
+   - `setTimeout()` schedules the execution of the provided callback function after 2 seconds. Inside this callback, the string is reversed and the result is logged to the console.
+
+### Detailed Steps:
+
+1. **Split the String:**
+   - `str.split('')` splits the string into an array of characters.
+
+2. **Reverse the Array:**
+   - `.reverse()` reverses the order of elements in the array.
+
+3. **Join the Array:**
+   - `.join('')` joins the elements of the array back into a single string.
+
+4. **Print the Result:**
+   - `console.log('Reversed string:', reversed);` prints the reversed string to the console.
+
+This code snippet demonstrates how to handle asynchronous operations with `setTimeout()` and perform string manipulations in JavaScript.
+
+.......................................................................
+
+2. Random Number Generator with Delay and Progress Indication:
+The goal of this program is to generate a random number after a delay of 3 
+seconds, and store the delay in a variable so can be modified. The program 
+displays a message every second indicating the time remaining until the random 
+number is generated and then outputs the generated number.
+
+A.To create a program that generates a random number after a 3-second delay and indicates the remaining time every second, you can use JavaScript's `setInterval()` and `setTimeout()` functions. Here's how you can achieve this:
+
+1. **Define Variables:**
+   - Store the delay in a variable.
+   - Set up a countdown interval to update the remaining time.
+
+2. **Countdown with Progress Indication:**
+   - Use `setInterval()` to display the remaining time every second.
+
+3. **Generate the Random Number:**
+   - After the delay, use `setTimeout()` to generate and display the random number.
+
+Here's a sample implementation:
+
+```javascript
+// Define the delay in milliseconds
+const delay = 3000; // 3 seconds
+
+// Function to generate a random number
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 100) + 1; // Generates a number between 1 and 100
+}
+
+// Countdown function
+function countdown(seconds) {
+    let remainingTime = seconds;
+
+    // Display remaining time every second
+    const intervalId = setInterval(() => {
+        console.log(`Time remaining: ${remainingTime} seconds`);
+        remainingTime--;
+
+        // Clear interval when countdown is complete
+        if (remainingTime < 0) {
+            clearInterval(intervalId);
+        }
+    }, 1000);
+
+    // After the delay, generate the random number
+    setTimeout(() => {
+        console.log(`Generating random number...`);
+        const randomNumber = generateRandomNumber();
+        console.log(`Random number generated: ${randomNumber}`);
+    }, delay);
+}
+
+// Start countdown with the specified delay (in seconds)
+countdown(delay / 1000);
+```
+
+### Explanation:
+
+1. **Variables and Functions:**
+   - `const delay = 3000;` sets the delay for the random number generation to 3 seconds.
+   - `generateRandomNumber()` generates a random number between 1 and 100.
+   - `countdown(seconds)` handles the countdown and the random number generation.
+
+2. **Countdown:**
+   - `setInterval()` is used to log the remaining time every second.
+   - `remainingTime` is initialized with the countdown duration (converted from milliseconds to seconds).
+
+3. **Completion of Countdown:**
+   - `clearInterval(intervalId);` stops the countdown once it reaches zero.
+
+4. **Random Number Generation:**
+   - `setTimeout()` triggers after the specified delay to generate and display the random number.
+
+5. **Start Countdown:**
+   - `countdown(delay / 1000);` initiates the countdown with the delay converted to seconds.
+
+This approach ensures that users are informed about the remaining time and that the random number is generated after the specified delay.
+
+.......................................................................
+
+3. Build a feature for Store's Inventory.
+Suppose a store has a list of items and their prices in US Dollars stored as 
+an object. Create a JavaScript program to convert the prices to Indian Rupees 
+using an exchange rate of 1 USD to 80 INR. The program should use the map 
+higher-order function to create a new object with the converted prices in Rupees.
+
+A.To convert the prices of items in a store's inventory from US Dollars (USD) to Indian Rupees (INR) using an exchange rate of 1 USD = 80 INR, you can use the `map` method along with `Object.entries()` to iterate over the original object and create a new object with the converted prices. Here's how you can achieve this:
+
+### Example Implementation:
+
+```javascript
+// Original store inventory with prices in USD
+const storeInventoryUSD = {
+    "item1": 10,
+    "item2": 25,
+    "item3": 50,
+    "item4": 75,
+};
+
+// Exchange rate from USD to INR
+const exchangeRate = 80;
+
+// Convert the prices to INR using map and object destructuring
+const storeInventoryINR = Object.fromEntries(
+    Object.entries(storeInventoryUSD).map(([item, price]) => [item, price * exchangeRate])
+);
+
+console.log(storeInventoryINR);
+```
+
+### Explanation:
+
+1. **Store Inventory Object:**
+   - The `storeInventoryUSD` object contains items with their prices in USD.
+
+2. **Exchange Rate:**
+   - The `exchangeRate` variable is set to 80, which is the conversion rate from USD to INR.
+
+3. **Conversion Process:**
+   - `Object.entries(storeInventoryUSD)` converts the `storeInventoryUSD` object into an array of key-value pairs (e.g., `[['item1', 10], ['item2', 25], ...]`).
+   - The `map` function iterates over this array, converting each price by multiplying it by the `exchangeRate`. It returns a new array of key-value pairs with the converted prices.
+   - `Object.fromEntries()` converts this array of key-value pairs back into an object with the converted prices.
+
+4. **Output:**
+   - The `storeInventoryINR` object contains the same items as the original inventory but with their prices converted to INR.
+
+### Example Output:
+
+```javascript
+{
+  "item1": 800,
+  "item2": 2000,
+  "item3": 4000,
+  "item4": 6000
+}
+```
+
+This approach efficiently converts the prices in the store's inventory from USD to INR, demonstrating the use of higher-order functions like `map` in conjunction with object manipulation methods in JavaScript.
+
+.......................................................................
+
+4. Filtering and Capitalizing: Books Published After 2010 with Author Names.
+Write a program that takes a list of books, including their authors and 
+publication years as input. The program should then filter out all books that 
+were published before 2010 and create a new array with the remaining books, 
+but with their author names capitalized.
+
+A.To filter books published after 2010 and capitalize the authors' names, you can use the `filter` method to filter the books and the `map` method to capitalize the author names. Here's how you can do it:
+
+### Example Implementation:
+
+```javascript
+// Sample list of books
+const books = [
+    { title: "Book One", author: "john doe", year: 2005 },
+    { title: "Book Two", author: "jane smith", year: 2012 },
+    { title: "Book Three", author: "george brown", year: 2018 },
+    { title: "Book Four", author: "emily white", year: 2009 },
+    { title: "Book Five", author: "alice black", year: 2020 },
+];
+
+// Function to capitalize the author's name
+function capitalizeName(name) {
+    return name.split(' ')
+               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+               .join(' ');
+}
+
+// Filter books published after 2010 and capitalize author names
+const recentBooks = books
+    .filter(book => book.year > 2010)
+    .map(book => ({
+        title: book.title,
+        author: capitalizeName(book.author),
+        year: book.year
+    }));
+
+console.log(recentBooks);
+```
+
+### Explanation:
+
+1. **Book List:**
+   - The `books` array contains objects where each object represents a book with its title, author, and publication year.
+
+2. **Capitalization Function:**
+   - `capitalizeName` is a helper function that takes a string (author's name) and capitalizes the first letter of each word in the string.
+
+3. **Filtering and Mapping:**
+   - `filter(book => book.year > 2010)` filters out the books published before 2010.
+   - `map(book => ({ ... }))` creates a new array of books where each book's author name is capitalized using the `capitalizeName` function.
+
+4. **Resulting Array:**
+   - The `recentBooks` array contains only the books published after 2010 with the author names capitalized.
+
+### Example Output:
+
+```javascript
+[
+    { title: 'Book Two', author: 'Jane Smith', year: 2012 },
+    { title: 'Book Three', author: 'George Brown', year: 2018 },
+    { title: 'Book Five', author: 'Alice Black', year: 2020 }
+]
+```
+
+This approach effectively filters the books based on their publication year and ensures that the authors' names are properly capitalized.
+
+.......................................................................
+
+5. URL validation.
+Write a program using a regex that matches valid URLs. Valid URLs should start 
+with either http:// or https://, followed by one or more letters, digits, or 
+special characters, followed by a dot, followed by one or more letters.
+Print a message indicating if the input matches the conditions or not.
+
+A.To validate a URL using a regular expression in JavaScript, we can create a regex pattern that checks if the URL starts with `http://` or `https://`, followed by valid characters, and ends with a proper domain name structure. Here's how you can implement this:
+
+### Example Implementation:
+
+```javascript
+function validateURL(url) {
+    // Regular expression pattern for URL validation
+    const urlPattern = /^(https?:\/\/)[\w\-]+(\.[\w\-]+)+[\w\-\._~:/?#[\]@!$&'()*+,;=]*$/;
+
+    // Test the input URL against the pattern
+    if (urlPattern.test(url)) {
+        console.log("The input is a valid URL.");
+    } else {
+        console.log("The input is not a valid URL.");
+    }
+}
+
+// Test cases
+validateURL("https://www.example.com");  // Valid
+validateURL("http://example");           // Invalid (missing top-level domain)
+validateURL("https://example.co.uk");    // Valid
+validateURL("ftp://example.com");        // Invalid (wrong protocol)
+validateURL("https://123.com");          // Valid
+validateURL("http://www.-example.com");  // Invalid (invalid characters in domain)
+```
+
+### Explanation:
+
+1. **Regex Pattern:**
+   - `^(https?:\/\/)`: Ensures that the URL starts with `http://` or `https://`.
+   - `[\w\-]+`: Matches one or more word characters (letters, digits, underscores) or hyphens. This part matches the domain name.
+   - `(\.[\w\-]+)+`: Matches one or more occurrences of a dot followed by valid characters (letters, digits, or hyphens). This part validates the domain extension, like `.com`, `.co.uk`, etc.
+   - `[\w\-\._~:/?#[\]@!$&'()*+,;=]*$`: Matches the remaining valid URL characters after the domain name, including path, query string, etc.
+
+2. **URL Validation:**
+   - The `test()` method is used to check if the input string matches the regex pattern.
+
+3. **Output:**
+   - The function prints whether the input is a valid URL or not.
+
+### Example Outputs:
+- `"https://www.example.com"` -> The input is a valid URL.
+- `"http://example"` -> The input is not a valid URL.
+- `"https://123.com"` -> The input is a valid URL.
+
+This regex pattern covers basic URL validation and can be expanded or adjusted depending on the specific requirements of the URL structure you're dealing with.
+
+.......................................................................
+
+6. LinkedIn Profile URL Validator.
+As a developer, you want to create a program that validates LinkedIn profile 
+URLs to ensure that they are formatted correctly and contain only valid 
+characters. Valid LinkedIn profile URLs should start with https://
+www.linkedin.com/in/ followed by a combination of one or more letters, digits, 
+underscores, or hyphens, and end with a letter or digit. The length of the 
+profile ID should be between 5 and 30 characters. 
+
+The program should use a regular expression to match valid LinkedIn profile URLs, 
+and should not match URLs that do not follow this format or contain invalid 
+characters. The program should provide clear output messages indicating whether 
+each input is a valid LinkedIn profile URL or not.
+
+A.To create a LinkedIn profile URL validator in JavaScript, we can design a regular expression (regex) that adheres to the specific format and rules outlined. The regex will ensure that the URL:
+
+1. Starts with `https://www.linkedin.com/in/`.
+2. Follows with a profile ID consisting of letters, digits, underscores, or hyphens.
+3. The profile ID is between 5 and 30 characters long.
+4. Ends with a letter or digit.
+
+Here's how you can implement this:
+
+### Example Implementation:
+
+```javascript
+function validateLinkedInURL(url) {
+    // Regular expression pattern for LinkedIn profile URL validation
+    const linkedInPattern = /^https:\/\/www\.linkedin\.com\/in\/[a-zA-Z0-9_-]{5,30}$/;
+
+    // Test the input URL against the pattern
+    if (linkedInPattern.test(url)) {
+        console.log("The input is a valid LinkedIn profile URL.");
+    } else {
+        console.log("The input is not a valid LinkedIn profile URL.");
+    }
+}
+
+// Test cases
+validateLinkedInURL("https://www.linkedin.com/in/john-doe-123");     // Valid
+validateLinkedInURL("https://www.linkedin.com/in/johndoe");           // Valid
+validateLinkedInURL("https://www.linkedin.com/in/j");                 // Invalid (too short)
+validateLinkedInURL("https://www.linkedin.com/in/john_doe_1234567890123456789012345");  // Invalid (too long)
+validateLinkedInURL("https://www.linkedin.com/in/john*doe");          // Invalid (invalid character '*')
+validateLinkedInURL("https://linkedin.com/in/johndoe");               // Invalid (wrong base URL)
+```
+
+### Explanation:
+
+1. **Regex Pattern:**
+   - `^https:\/\/www\.linkedin\.com\/in\/`: Ensures that the URL starts with `https://www.linkedin.com/in/`.
+   - `[a-zA-Z0-9_-]{5,30}$`: Matches a string that contains only letters (a-z, A-Z), digits (0-9), underscores (`_`), or hyphens (`-`), with a length between 5 and 30 characters. The `$` ensures that the string ends with this pattern.
+
+2. **LinkedIn URL Validation:**
+   - The `test()` method is used to check if the input string matches the regex pattern.
+
+3. **Output:**
+   - The function prints whether the input is a valid LinkedIn profile URL or not.
+
+### Example Outputs:
+- `"https://www.linkedin.com/in/john-doe-123"` -> The input is a valid LinkedIn profile URL.
+- `"https://www.linkedin.com/in/j"` -> The input is not a valid LinkedIn profile URL (too short).
+- `"https://www.linkedin.com/in/john*doe"` -> The input is not a valid LinkedIn profile URL (contains an invalid character).
+
+This validation ensures that the LinkedIn profile URLs conform to the required format and only contain valid characters.
+
+.......................................................................
+
+
+
+
+
